@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country-Odyssey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="joinGame" class="center-container">
+        <h2>Country-Odyssey</h2>
+        <div class="join-form">
+            <div class="input-group">
+                <input type="text" id="playerName" placeholder="Enter your name" required>
+                <div class="flag-selector">
+                    <img id="selectedFlag" src="https://flagcdn.com/w40/us.png" alt="Selected flag">
+                    <select id="countryFlag" onchange="updateFlag(this.value)">
+                        <option value="auto">🌍 Detect Country</option>
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+            <button class="game-button" onclick="createGame()" type="button">Create New Game</button>
+            <div class="active-games">
+                <h3>Active Games</h3>
+                <div id="gamesList" class="games-list">
+                    <!-- Games will be listed here -->
+                </div>
+                <div class="manual-join">
+                    <p>Or join with Game ID:</p>
+                    <div class="join-section">
+                        <input type="text" id="gameIdInput" placeholder="Enter Game ID" autocomplete="off">
+                        <button class="game-button" onclick="joinGame()" type="button">Join Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="waitingScreen" class="center-container hidden">
+        <h3>Waiting for players to join...</h3>
+        <p id="gameId" class="game-id"></p>
+        <p>Share this Game ID with other players!</p>
+    </div>
+
+    <div id="gameScreen" class="hidden">
+        <div class="game-header">
+            <div id="timer" class="timer">Time: 3:00</div>
+            <div id="countryToFind" class="target-country"></div>
+            <div id="scores" class="scores"></div>
+        </div>
+        <div id="map-container"></div>
+        <button id="skipButton" class="skip-button" onclick="voteToSkip()">Skip Country (0/2) [3 left]</button>
+    </div>
+
+    <div id="gameEndScreen" class="center-container hidden">
+        <h2>Game Over!</h2>
+        <div id="finalScores"></div>
+        <div id="gameStats"></div>
+        <button class="game-button" onclick="location.reload()">Play Again</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
