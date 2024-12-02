@@ -8,31 +8,226 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LHBVWHRTC6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-LHBVWHRTC6');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHBVWHRTC6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-LHBVWHRTC6');
+    </script>
 </head>
 <body>
     <div class="home-container">
-        <h1>Country Odyssey</h1>
+        <div class="hero-section">
+            <h1>Country Odyssey</h1>
+            <p class="subtitle">Guess, press, and be the best!</p>
+        </div>
+        
         <div class="menu-options">
-            <a href="/game" class="menu-button">
-                <i class="fas fa-play"></i>
+            <a href="/game" class="menu-button primary">
+                <i class="fas fa-play-circle"></i>
                 Play Game
             </a>
-            <a href="https://forms.gle/a4KJVSvsfVeBH7pMA" target="_blank" class="menu-button">
-                <i class="fas fa-comment"></i>
+            <a href="/documentation.html" class="menu-button secondary">
+                <i class="fas fa-book"></i>
+                Documentation
+            </a>
+            <a href="https://forms.gle/a4KJVSvsfVeBH7pMA" target="_blank" class="menu-button secondary">
+                <i class="fas fa-comment-dots"></i>
                 Feedback
             </a>
         </div>
-        <div class="version-info">made by <strong>vusal</strong> | 1.0.0</div>
+
+        <div class="leaderboard">
+            <h2 class="leaderboard-title">
+                <i class="fas fa-trophy"></i>
+                Top Players
+            </h2>
+            <div class="leaderboard-content">
+                <div class="leaderboard-item">
+                    <span class="rank">1</span>
+                    <span class="player">Loading...</span>
+                    <span class="score">-</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">2</span>
+                    <span class="player">Loading...</span>
+                    <span class="score">-</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">3</span>
+                    <span class="player">Loading...</span>
+                    <span class="score">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="version-info">
+            <span>made by <strong>vusal</strong></span>
+            <span class="version-badge">v1.0.0</span>
+        </div>
     </div>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f6fff7 0%, #f1f5fe 100%);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .home-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-section {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #2d3436 0%, #000000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 0;
+        }
+
+        .menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto 3rem;
+        }
+
+        .menu-button {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .menu-button.primary {
+            background: linear-gradient(45deg, #000000 0%, #2d3436 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-button.secondary {
+            background: white;
+            color: #1a1a1a;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .leaderboard {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .leaderboard-title {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .leaderboard-title i {
+            color: #ffd700;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+
+        .leaderboard-item:hover {
+            transform: scale(1.02);
+            background: #f1f3f5;
+        }
+
+        .rank {
+            font-weight: 700;
+            width: 30px;
+            font-size: 1.2rem;
+        }
+
+        .player {
+            flex-grow: 1;
+            text-align: left;
+            padding: 0 1rem;
+        }
+
+        .score {
+            font-weight: 600;
+            color: #2ecc71;
+        }
+
+        .version-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .version-badge {
+            background: #e9ecef;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .menu-options {
+                padding: 0 1rem;
+            }
+
+            .leaderboard {
+                margin: 2rem 1rem;
+            }
+        }
+    </style>
 </body>
 </html>
