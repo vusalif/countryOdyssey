@@ -8,17 +8,24 @@ const io = require('socket.io')(server);
 // Define port
 const PORT = process.env.PORT || 3001;
 
-// Serve static files from the public directory
-app.use(express.static('public'));
+// Add this near the top of your server.js
+console.log('Current directory:', __dirname);
+console.log('Public directory:', path.join(__dirname, 'public'));
 
-// Serve the main page
+// Update the static files middleware to use absolute path
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Update route handlers to use absolute paths
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Serve the game page
 app.get('/game', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'countryFinder.html'));
+});
+
+app.get('/documentation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'documentation.html'));
 });
 
 // Store active games
@@ -78,6 +85,20 @@ function getPublicGamesList() {
         });
     });
     return gamesList;
+}
+
+// Add near the top with other global variables
+const leaderboard = new Map(); // Store player scores
+
+// Add this function to get top players
+function getTopPlayers() {
+    return Array.from(leaderboard.values())
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)  // Get top 3 players
+        .map(player => ({
+            name: player.name,
+            score: player.score
+        }));
 }
 
 io.on('connection', (socket) => {
