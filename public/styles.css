@@ -687,7 +687,7 @@ body {
 /* Update the game-message styles */
 .game-message {
     position: fixed;
-    top: 20px;
+    top: 800px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.8);
